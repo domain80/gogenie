@@ -14,19 +14,19 @@ var modelCmd = &cobra.Command{
 	Use:   "model",
 	Short: "generate a new model using a given struct",
 	Long: `Flow:
-	- user defines model type
-	- user specifies /*go:generate genie model <model_name> [[db-type="pg/msql/mongo"]] */  comment above model Gen
-	- When the generate command is run:
-		- A new file in the internal/models directory is crated with the name <model_name>.go
-		- A new model of name <model_name>Model
-		- CRUD functions around the Model.
-			- Create 
-			- Read
-				- Latest
-				- All
-				- Paginated
-			- Update
-			- Delete `,
+	user defines model type
+	user specifies /*go:generate genie model <model_name> [[db-type="pg/msql/mongo"]] */  comment above model Gen
+	When the generate command is run:
+	A new file in the internal/models directory is crated with the name <model_name>.go
+	A new model of name <model_name>Model
+	CRUD functions around the Model.
+	  Create 
+	  Read
+	    Latest
+	    All
+	    Paginated
+	  Update
+	  Delete `,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("model called")
 	},
