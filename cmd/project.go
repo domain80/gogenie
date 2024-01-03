@@ -39,7 +39,7 @@ var projectCmd = &cobra.Command{
 			}
 		}
 
-		dir, err := assets.ReadDir("assets/newProject")
+		dir, err := assets.ReadDir("assets/project-layout")
 		if err != nil {
 			log.Fatal(err)
 		}
