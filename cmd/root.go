@@ -66,6 +66,9 @@ func init() {
 
 	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.genie.yaml)")
 
+	rootCmd.PersistentFlags().StringP("name", "n", "genieProject_gen", "the name of the generated project")
+	rootCmd.PersistentFlags().StringP("path", "p", "./", "the root path of the generated project")
+
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")

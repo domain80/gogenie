@@ -15,9 +15,7 @@ limitations under the License.
 */
 package main
 
-import (
-	"github.com/domain80/genie/cmd"
-)
+import "github.com/domain80/genie/cmd"
 
 func main() {
 	cmd.Execute()

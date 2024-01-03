@@ -100,8 +100,4 @@ func init() {
 	// projectCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
 	//go:assets assets
-
-	projectCmd.Flags().StringP("name", "n", "genieProject_gen", "the name of the generated project")
-	projectCmd.Flags().StringP("path", "p", "./", "the root path of the generated project")
-
 }

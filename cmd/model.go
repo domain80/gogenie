@@ -5,6 +5,10 @@ package cmd
 
 import (
 	"fmt"
+	"go/format"
+	"log"
+	"os"
+	"text/template"
 
 	"github.com/spf13/cobra"
 )
@@ -29,6 +33,46 @@ var modelCmd = &cobra.Command{
 	  Delete `,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("model called")
+		nameFlag := cmd.Flag("name")
+		// pathFlag := cmd.Flag("path")
+
+		modelTemplate, err := assets.ReadFile("assets/model.tmpl")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		newModel, err := os.Create(nameFlag.Value.String() + ".go")
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer newModel.Close()
+
+		tp, err := template.New("modelTemplate").Parse(string(modelTemplate))
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		err = tp.Execute(newModel, struct {
+			Name    string
+			DBType  string
+			Package string
+		}{Name: nameFlag.Value.String(),
+			DBType:  "sql",
+			Package: os.Getenv("GOPACKAGE"),
+		})
+		if err != nil {
+			log.Println(err)
+		}
+
+		// bf := bytes.Buffer{}
+		a, _ := os.ReadFile(newModel.Name())
+		fmt.Println(string(a))
+		a, _ = format.Source(a)
+		fmt.Println(string(a))
+		// a.Read(bf.Bytes())
+		// fmt.Println(bf.String())
+		// a.WriteTo(newModel)
+
 	},
 }
 
